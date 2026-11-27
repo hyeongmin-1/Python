@@ -33,14 +33,14 @@ if uploaded:
         st.sidebar.success(f"CSV에서 {len(base_rows)}행을 불러왔습니다")
     except ValueError as exc:
         st.sidebar.error(str(exc))
-else:
-    sample = Path(__file__).resolve().parent/"data"/"sales.csv"
-    if sample:
+
+sample = Path(__file__).resolve().parent/"data"/"sales.csv"
+if sample:
         base_rows = parse_sales(sample.read_bytes())
-    else:
-        base_rows = [
-            {"product":"book","quantity":2,"price":12000},
-            {"product":"pen","quantity":5,"price":1500}]
+else:
+    base_rows = [
+        {"product":"book","quantity":2,"price":12000},
+        {"product":"pen","quantity":5,"price":1500}]
 
 all_rows = base_rows + st.session_state.pos_orders
 
